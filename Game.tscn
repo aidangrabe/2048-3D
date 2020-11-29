@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game.gd" type="Script" id=4]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
+
+[node name="Game" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="Floor" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0 )
+
+[node name="WallLeft" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 4, -2, 0.25, 0 )
+
+[node name="WallRIght" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 4, 2, 0.25, 0 )
+
+[node name="Wall" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.62921e-07, 0, 2, 0, 1, 0, -1, 0, -3.25841e-07, 0, 0.25, -4.05354 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.794807, 0.606863, 0, -0.606863, 0.794807, 0, 5.14199, 6.60219 )
+
+[node name="NextCubeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.934164, -0.247095, 0.257454, -0.132864, 0.428756, 0.893597, -0.331188, -0.868972, 0.367698, -0.0970252, 33.7251, 6.60209 )
+light_energy = 0.5
+shadow_enabled = true
+shadow_bias = -0.06
+shadow_contact = 0.35
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0511563, 3.32917, -4.51084 )
+[connection signal="timeout" from="NextCubeTimer" to="." method="_on_NextCubeTimer_timeout"]

@@ -1,0 +1,4 @@
+*.apk
+/.import
+
+.DS_STORE
